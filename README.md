@@ -193,7 +193,7 @@ XuNet OS aims to be:
 
 ---
 
-## 🧑‍💻 Author
+##  Author
 
 > **XuNet OS** is developed by Me in Inbora Studio.  
 > Independent kernel, tools, and drivers all crafted from scratch for educational and experimental purposes.
