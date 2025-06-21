@@ -1,201 +1,98 @@
+# XuNet OS 32-Bit 🚀
 
-# XuNet OS — Fast. Independent. Crafted in Bare Metal.
+![XuNet OS](https://img.shields.io/badge/XuNet%20OS-32--Bit-brightgreen)
 
-**XuNet OS** is a blazing-fast, 32-bit custom operating system designed from the ground up with its own **independent kernel** (`XuNet`), bootloader, memory manager, shell, and GUI. Targeting the **x86 architecture**, it is built using **pure C and Assembly**, delivering a hands-on system-level computing experience.
+Welcome to the XuNet OS 32-Bit repository! This project aims to provide a simple yet powerful 32-bit operating system built from scratch. With a focus on low-level programming and system internals, XuNet OS serves as an excellent platform for developers and enthusiasts alike.
 
-Whether you're into retro computing, OS development, or low-level hardware exploration — **XuNet OS**
+## Table of Contents
 
----
+- [Overview](#overview)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
+## Overview
 
-![61287157](https://github.com/user-attachments/assets/a004b0e9-3320-4072-811c-43c290b5bd9b)
+XuNet OS is designed to help you explore the intricacies of operating systems. It features a custom-built kernel that provides a minimal command-line interface, memory management, and a bootloader. This operating system is perfect for those looking to learn about system programming, optimization, and low-level hardware interactions.
 
----
+### Key Topics
 
-##  Key Features
+- **32-bit**: Focused on 32-bit architecture for compatibility.
+- **Bootloader**: Custom bootloader designed for STM32.
+- **Kernel**: A unique kernel built from scratch.
+- **Low-Level**: Engage with hardware at a low level.
+- **Operating Systems**: A platform for OS development.
+- **Optimization**: Fine-tune system performance.
+- **System Design**: Explore system architecture.
+- **Systems Programming**: Write code that interacts closely with the hardware.
 
-| Feature | Description |
-|--------|-------------|
-|  Custom Kernel | `XuNet` kernel – fully handcrafted, monolithic, runs independently of any existing OS |
-|  GUI Framework | Custom graphical subsystem with support for windows, wallpaper, icons, and task rendering |
-|  Bootloader | Written in Assembly – direct MBR boot with protected mode switch and kernel load |
-|  File System | Custom FS (WIP) with sector-based read/write support, basic file structuring |
-|  Keyboard Support | Scancode h
-andling for English + Chinese layout via interrupt-driven input |
-|  Timer + Interrupts | PIT (Programmable Interval Timer) and hardware interrupt handling (IRQ 0–15) |
-|  Shell Interface | Command line shell for low-level interaction and internal command execution |
-|  Built-in APIs | System-call layer for custom app development & GUI component interaction |
-|  Shutdown Support | ACPI/APM shutdown routine implemented at system and kernel level |
-|  Universal Video | VESA-compatible graphics mode (320x200 and higher) with direct framebuffer access |
+## Features
 
----
-<br>
-<pre align="center">
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣤⣤⣤⣤⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⠶⣻⠝⠋⠠⠔⠛⠁⡀⠀⠈⢉⡙⠓⠶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⢋⣴⡮⠓⠋⠀⠀⢄⠀⠀⠉⠢⣄⠀⠈⠁⠀⡀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⢁⣔⠟⠁⠀⠀⠀⠀⠀⠈⡆⠀⠀⠀⠈⢦⡀⠀⠀⠘⢯⢢⠙⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⠃⠀⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⠀⠀⢳⣦⡀⠀⠀⢯⠀⠈⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⠆⡄⢠⢧⠀⣸⠀⠀⠀⠀⠀⠀⠀⢰⠀⣄⠀⠀⠀⠀⢳⡈⢶⡦⣿⣷⣿⢉⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣯⣿⣁⡟⠈⠣⡇⠀⠀⢸⠀⠀⠀⠀⢸⡄⠘⡄⠀⠀⠀⠈⢿⢾⣿⣾⢾⠙⠻⣾⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⡿⣮⠇⢙⠷⢄⣸⡗⡆⠀⢘⠀⠀⠀⠀⢸⠧⠀⢣⠀⠀⠀⡀⡸⣿⣿⠘⡎⢆⠈⢳⣽⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢠⡟⢻⢷⣄⠀⠀⠀⠀⠀⠀⣾⣳⡿⡸⢀⣿⠀⠀⢸⠙⠁⠀⠼⠀⠀⠀⠀⢸⣇⠠⡼⡤⠴⢋⣽⣱⢿⣧⠀⢳⠈⢧⠀⢻⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⢀⡿⣠⡣⠃⣿⠃⠀⠀⠀⠀⣸⣳⣿⠇⣇⢸⣿⢸⣠⠼⠀⠀⠀⡇⠀⡀⠉⠒⣾⢾⣆⢟⣳⡶⠓⠶⠿⢼⣿⣇⠈⡇⠘⢆⠈⢿⡘⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠈⢷⣍⣤⡶⣿⡄⠀⠀⠀⢠⣿⠃⣿⠀⡏⢸⣿⣿⠀⢸⠀⠀⢠⡗⢀⠇⠀⢠⡟⠀⠻⣾⣿⠀⠀⠀⠀⡏⣿⣿⡀⢹⡀⠈⢦⠈⢷⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢁⣤⣄⠁⠀⠀⠀⣼⡏⢰⣟⠀⣇⠘⣿⣿⣾⣾⣆⢀⣾⠃⣼⢠⣶⣿⣭⣷⣶⣾⣿⣤⠀⠀⠀⡇⡯⣍⣧⠀⣷⠄⠈⢳⡀⢻⡁⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⣿⡿⠀⠀⠀⠀⡿⢀⣾⣧⠀⡗⡄⢿⣿⡙⣽⣿⣟⠛⠚⠛⠙⠉⢹⣿⣿⣦⠀⢸⡿⠀⠀⠀⢰⡯⣌⢻⡀⢸⢠⢰⡄⠹⡷⣿⣦⣤⠤⣶⡇⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⣇⣾⣿⢸⢠⣧⢧⠘⣿⡇⠸⣿⢿⡆⠀⠀⠀⠀⠘⣯⠇⣿⠂⣸⢰⠀⠀⢀⣸⡧⣊⣼⡇⢸⣼⣸⣷⢣⢻⣄⠉⠙⠛⠉⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣳⣤⣴⣿⣏⣿⣾⢸⣿⡘⣧⣘⢿⣀⡙⣞⠁⠀⠀⠀⠀⢀⡬⢀⣉⢠⣧⡏⠀⠀⡎⣿⣿⣿⣿⠃⣸⡏⣿⣿⡎⢿⡘⡆⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⣠⣼⣿⣿⣿⣼⣿⣧⢿⣿⣿⣯⡻⠟⠀⠀⠀⠀⠀⠐⢯⠣⡽⢟⣽⠀⠀⢘⡇⣿⣿⣿⡟⣴⣿⣷⣿⣿⣧⣿⣷⡽⠀⠀⠀⠀⠀⠀⠀
-⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣼⣹⣿⣇⣸⣿⣿⣿⣻⣚⣿⡿⣿⣿⣦⣤⣀⡉⠃⠀⢀⣀⣤⡶⠛⡏⠀⢀⣼⢸⣿⣿⣿⣿⣿⣿⣿⢋⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀
-⣿⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠒⠒⠒⢭⢻⣽⣿⣿⣿⣿⣿⣿⢿⠿⣿⡏⠀⡼⠁⣀⣾⣿⣿⣿⣿⡿⣿⣿⣟⡻⣿⣿⡿⠣⠟⠀⠀⠀⠀⠀⠀⠀⠀
-⠸⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢧⢿⣯⡽⠿⠛⠋⣵⢟⣋⣿⣶⣞⣤⣾⣿⣿⡟⢉⡿⢋⠻⢯⡉⢻⡟⢿⡅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⢻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡞⣿⣆⡀⠀⡼⡏⠉⠚⠭⢉⣠⠬⠛⠛⢁⡴⣫⠖⠁⠀⠀⣩⠟⠁⣸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠈⢷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣽⣿⣿⣾⠳⡙⣦⡤⠜⠊⠁⠀⣀⡴⠯⠾⠗⠒⠒⠛⠛⠛⠛⠛⠓⠿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠘⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢷⣻⣿⣿⠔⢪⠓⠬⢍⠉⣩⣽⢻⣤⣶⣦⠀⠀⠀⢀⣀⣤⣴⣾⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠹⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣾⡏⢦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣯⣿⣿⠀⠀⣇⠀⣠⠎⠁⢹⡎⡟⡏⣷⣶⠿⠛⡟⠛⠛⣫⠟⠉⢿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣷⠈⢷⡤⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣾⣷⡀⣀⣀⣷⡅⠀⠀⠈⣷⢳⡇⣿⠀⠀⣸⠁⢠⡾⣟⣛⣻⣟⡿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢯⢻⣏⡵⠿⠿⢤⣄⠀⢀⣿⢸⣹⣿⣀⣴⣿⣴⣿⣛⠋⠉⠉⡉⠛⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡎⣿⣥⣶⠖⢉⣿⡿⣿⣿⡿⣿⣟⠿⠿⣿⣿⣿⡯⠻⣿⣿⣿⣷⡽⣿⡗⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡘⣿⣩⠶⣛⣋⡽⠿⣷⢬⣙⣻⣿⣿⣿⣯⣛⠳⣤⣬⡻⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀
-⠀⣿⣛⣻⣿⡿⠿⠟⠗⠶⠶⠶⠶⠤⠤⢤⠤⡤⢤⣤⣤⣤⣤⣄⣀⣀⣀⣀⣀⣀⣀⣀⣣⢹⣷⣶⣿⣿⣦⣴⣟⣛⣯⣤⣿⣿⣿⣿⣿⣷⣌⣿⣿⣿⣿⣿⣿⣿⣤⣤⣤⣤⣤⣤⣄
-⠀⠉⠙⠛⠛⠛⠛⠛⠻⠿⠿⠿⠷⠶⠶⢶⣶⣶⣶⣶⣤⣤⣤⣤⣤⣥⣬⣭⣭⣉⣩⣍⣙⣏⣉⣏⣽⣶⣶⣶⣤⣤⣬⣤⣤⣾⣿⠶⠾⠿⠿⠿⠿⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠃
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠛⠛⠛⠛⠛⠛⠋⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+- **Custom Kernel**: Built from the ground up for speed and simplicity.
+- **Bootloader**: Booting made easy with a dedicated bootloader.
+- **Memory Management**: Efficient memory allocation and management.
+- **Command-Line Interface**: A minimalistic interface for user interaction.
+- **Low-Level Learning**: Great for those wanting to understand system internals.
 
-</pre>
+## Getting Started
 
-##  Technical Architecture
+To get started with XuNet OS, you can download the latest release from our [Releases](https://github.com/Davizr3/XuNetOS-32-Bit-/releases) section. This will provide you with the necessary files to run XuNet OS on your hardware.
 
-```plaintext
-+------------------------------+
-|  User Applications (GUI)     |
-+------------------------------+
-|  XuNet System APIs           |
-+------------------------------+
-|  GUI & Shell Layer           |
-+------------------------------+
-|  Memory Management           |
-|  Filesystem Manager (WIP)    |
-|  Keyboard / Timer / IO       |
-+------------------------------+
-|  XuNet Kernel (32-bit)       |
-+------------------------------+
-|  Bootloader (Assembly)       |
-|  Real Mode → Protected Mode  |
-+------------------------------+
-|        Hardware (x86)        |
-+------------------------------+
-```
-## Low-Level Mathematical Foundations
-- XuNet OS is not just another OS project—it is a carefully crafted system built upon foundational low-level mathematical principles that are often hidden beneath modern abstractions:
+### Prerequisites
 
-- Binary & Hex Arithmetic: Used throughout the kernel for bit-level `hardware manipulation`, `memory paging`, and `instruction control`.
+- A computer with 32-bit architecture.
+- Basic understanding of operating systems and programming.
+- Development tools like GCC for C/C++.
 
-- Modular Arithmetic: Employed in implementing cyclic structures such as timers, `scheduling`, and `keyboard scancode parsing`.
+## Installation
 
-- Matrix and Vector Concepts: Utilized in early-stage `graphics rendering`, `pixel placement`, and `GUI transformations`.
+1. **Download the latest release**: Go to the [Releases](https://github.com/Davizr3/XuNetOS-32-Bit-/releases) section to find the latest version. Download the files and extract them to a directory of your choice.
 
-- Address Calculations: Logical to `physical address mapping`, `memory segmentation`, and `paging tables` all rely on precise arithmetic and offset computations.
+2. **Build the Project**: Navigate to the extracted directory and use the following commands:
 
-- Timing and Frequency Math: For implementing hardware clock timers and CPU cycle estimations.
+   ```bash
+   make
+   ```
 
-- This mathematical rigor ensures XuNet OS runs efficiently on `low-spec hardware`, making it ideal for education, `embedded systems`, or `vintage computing experiments`.
+3. **Flash to Device**: Use your preferred method to flash the bootloader and kernel to your device.
+
+4. **Run XuNet OS**: Once flashed, reboot your device to start XuNet OS.
+
+## Usage
+
+After installation, you can interact with XuNet OS through the command-line interface. The minimal interface allows you to execute commands, manage files, and explore system features.
+
+### Example Commands
+
+- **List Files**: Use the `ls` command to list files in the current directory.
+- **Change Directory**: Use `cd <directory>` to navigate through directories.
+- **Execute Programs**: Run any executable by typing its name.
+
+## Contributing
+
+We welcome contributions from everyone! If you want to contribute to XuNet OS, please follow these steps:
+
+1. **Fork the repository**.
+2. **Create a new branch**: `git checkout -b feature/YourFeature`.
+3. **Make your changes**.
+4. **Commit your changes**: `git commit -m "Add some feature"`.
+5. **Push to the branch**: `git push origin feature/YourFeature`.
+6. **Create a Pull Request**.
+
+Your contributions help improve XuNet OS for everyone!
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+For questions or feedback, feel free to reach out via GitHub issues or directly through my GitHub profile.
 
 ---
 
-## Version: `1.1.1af1`
-
-### Changelog:
--  **Added full shutdown via APM**
--  Improved shell command parsing and UI rendering engine
--  Refactored memory allocation routines (stack-safe)
--  Fixed major wallpaper rendering bug
--  Partial file I/O for experimental filesystem
--  Integrated XuNet System API v0.2 with demo apps
-- Enhanced system exception handling (division-by-zero, page fault)
-
----
-
-##  Build & Run
-
-### Requirements
-- NASM
-- GCC (32-bit cross-compiler)
-- `qemu`, `bochs`, or `virtualbox`
-- z_tools (customized for XuNet OS)
-
-### ⚠️ Warning
-> Some `z_tools` binaries are modified. **Compare** them with the original "30 Days OS" CD version before replacing. Run a virus scan to ensure a clean dev environment.
-
-### Commands:
-```bash
-git clone https://github.com/InboraStudio/XuNetOS-32-bit.git
-cd XuNet-OS
-make all        # Build kernel and bootable image
-make run        # Launch in QEMU
-make iso        # Build ISO for burning
-```
-
----
-
-##  Screenshots
-
-> *(Add real screenshots here once your GUI renders windows, terminal, etc.)*
-
----
-
-##  Learning Goals
-
-XuNet OS aims to be:
-- A **bare-metal development platform**
-- A **tool for learning protected mode**, paging, and BIOS/UEFI transition
-- A **sandbox for writing system calls**, GUIs, and device drivers
-- An **open experiment** for students, hobbyists, and OS engineers
-
----
-
-##  Internals (Implemented & WIP)
-
-| Subsystem       | Status | Notes |
-|-----------------|--------|-------|
-| Bootloader      | ✅     | Real mode → protected mode |
-| Memorys/ Storage| ✅     | 50 MB Storage, 7MB Ram
-| Kernel Core     | ✅     | Stack, IDT, GDT, exceptions |
-| Timer/IRQ       | ✅     | PIT, interrupt mapping |
-| Shell CLI       | ✅     | Basic commands, parser |
-| Filesystem      | ⚠️ WIP | Basic sector access only |
-| Keyboard Input  | ✅     | English + Chinese layout |
-| GUI System      | ✅     | Desktop, windows, buttons |
-| Mouse Input     | ⚠️ WIP | Basic polling version |
-| Memory Manager  | ✅     | Paging & physical allocator |
-| APIs for Apps   | ⚠️ EXP | System API v0.2 implemented |
-| Shutdown (APM)  | ✅     | Supports QEMU shutdown |
-| Virtualization  | ✅     | Works on QEMU / Bochs |
-
----
-
-##  Planned Features
-
-- [ ] Mouse cursor driver + GUI focus events
-- [ ] Advanced file manager with directory support
-- [ ] App launcher and multitasking
-- [ ] Custom scripting language for CLI
-- [ ] FAT12/16 filesystem support
-- [ ] Installer for bootable USB
-
----
-
-##  References
-
-- *30 Days to Make an Operating System* (Tanaka Hiroshi)
-- [OSDev.org](https://wiki.osdev.org/) — invaluable community wiki
-- Intel® 80386 Programmer’s Manual
-
----
-
-##  Author
-
-> **XuNet OS** is developed by Me in Inbora Studio.  
-> Independent kernel, tools, and drivers all crafted from scratch for educational and experimental purposes.
-
----
+Thank you for your interest in XuNet OS! We hope you enjoy exploring the world of operating systems with us. For the latest updates and releases, visit our [Releases](https://github.com/Davizr3/XuNetOS-32-Bit-/releases) section. Happy coding!
